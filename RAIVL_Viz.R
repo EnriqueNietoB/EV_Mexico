@@ -1,30 +1,24 @@
 library(ggplot2)
 library(tidyverse)
-library(data.table)
 library(ggpubr)
 library(gtable)
-library(ggprism)
-library(ggprism)
-library(jcolors) #Libreria con temas theme_dark_blue() theme_dark_gray()
-install.packages("wesanderson")
-# Load
-library(wesanderson)
   
 ###### Dando formato ####
 
 #Cargando base
+EnriqueNietoB/EV_Mexico
 #Formato de datos 
-RAIAVL_11$Año<-as.character(RAIAVL_11$Año)
+RAIAVL_11$AÃ±o<-as.character(RAIAVL_11$AÃ±o)
 #Colocando nombres
-colnames(RAIAVL_11)[4:6]<-c("EV","Plug-in","Hibrídos") 
+colnames(RAIAVL_11)[4:6]<-c("EV","Plug-in","HibrÃ­dos") 
 #From long to short
-EVs<-RAIAVL_11 %>% gather(Tipo, Ventas, EV:Hibrídos, factor_key=TRUE)
+EVs<-RAIAVL_11 %>% gather(Tipo, Ventas, EV:HibrÃ­dos, factor_key=TRUE)
 EVs$Ventas<-as.numeric(EVs$Ventas)
 #Eliminando NAs
 EVs<-na.omit(EVs)
 #Agrupando
-EVs<-EVs %>% group_by(Año,Tipo) %>% summarise(Ventas=sum(Ventas)) 
-EVs1<-EVs %>% group_by(Año) %>% summarise(Ventas=sum(Ventas)) 
+EVs<-EVs %>% group_by(AÃ±o,Tipo) %>% summarise(Ventas=sum(Ventas)) 
+EVs1<-EVs %>% group_by(AÃ±o) %>% summarise(Ventas=sum(Ventas)) 
 EVs1$Ventas<-EVs$Ventas/1000
 EVs$Ventas<-EVs$Ventas/1000
 
@@ -46,13 +40,13 @@ dark_theme<-theme(text=element_text(size=14,
 
 
 #Datos por year
-Year<-ggplot(EVs, aes(Año, Ventas, fill=Tipo)) +
+Year<-ggplot(EVs, aes(AÃ±o, Ventas, fill=Tipo)) +
   geom_bar(stat="identity") +
   coord_flip() + 
   scale_y_continuous(breaks = seq(0,40,5)) + 
 dark_theme + theme(legend.position="none") +
    labs(
-    title="Ventas de automóviles de baterías en México", 
+    title="Ventas de automÃ³viles de baterÃ­as en MÃ©xico", 
     subtitle = "(Miles)") +  scale_fill_manual(values=c("#0AEA4A","#F00707","#0A9CEA"))
 Year
 
@@ -66,8 +60,8 @@ dark_theme +
   labs(
     title="Ventas acumuladas", 
     subtitle = "2016-2021 (Miles)", 
-    caption = "INEGI: RAIVL, Información hasta 10/2021. Datos no incluyen Tesla",
-    x="Tipo de automóvil") +
+    caption = "INEGI: RAIVL, InformaciÃ³n hasta 10/2021. Datos no incluyen Tesla",
+    x="Tipo de automÃ³vil") +
   scale_fill_manual(values=c("#0AEA4A","#F00707","#0A9CEA")) 
 
 #Combinated  
