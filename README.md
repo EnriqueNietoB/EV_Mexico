@@ -1,0 +1,2 @@
+# EV_Mexico1
+This code uses a vizualization int dark_theme, of the total sales of Light Vehicules that have a battery in Mexico by type, Electric Vehicules (EV), Hybrid Plug-in (PHEV) and Hybrid (HEV) from 2016 to 2021. The data is reported by INEGI in  the "Registro administrativo de la industria automotriz de vehículos ligeros". Disclousure: As Tesla Inc. does not release the number of sales disaggregate by country, this data does not include models of Tesla. Data can be found at https://www.inegi.org.mx/app/tabulados/pxwebv2/pxweb/es/RAIAVL/RAIAVL/RAIAVL_11.px/
